@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses Piechart</title>
+    <script src="http://cdn.bokeh.org/bokeh/release/bokeh-2.3.0.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bokeh.org/bokeh/release/bokeh-2.3.0.min.css">
+</head>
+<body>
+    <h1>Expenses Piechart</h1>
+
+    
+    <p>{{ piechart_data }}</p>
+    <p>{{ names_list }}</p>
+    <p>{{ amounts_list }}</p>
+    <p>{{ piechart_data_dict }}</p>
+    
+
+    <div>
+        {{ div|safe }}
+        {{ script|safe }}
+    </div>
+
+
+</body>
+</html>

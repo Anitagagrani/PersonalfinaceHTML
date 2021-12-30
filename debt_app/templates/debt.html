@@ -1,0 +1,186 @@
+{# debt_app/templates/debt.html #}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PFT - Debt</title>
+    <script src="http://cdn.bokeh.org/bokeh/release/bokeh-2.3.0.min.js"></script>
+    <!--<link rel="stylesheet" href="http://cdn.bokeh.org/bokeh/release/bokeh-2.3.0.min.css">-->
+    <!--<link rel="stylesheet" href="{% static 'ticket/static/css/screen.css' %}" />-->
+
+    <style>
+
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-color: rgb(243, 243, 243);
+            box-sizing: border-box;
+            color: rgb(48, 48, 48);
+        }
+
+        header {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        header h1 {
+            margin: 0 auto;
+            padding: 0 auto;
+            font-size: 300%;
+        }
+
+        header h3 {
+            margin: 0 auto;
+            padding: 0 auto;
+        }
+
+        #beta {
+            font-size: medium;
+            vertical-align: middle;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border: 2px solid rgb(48, 48, 48);
+            border-width: 2px 0;
+            justify-content: space-around;
+            font-weight: 600;
+        }
+
+        nav a {
+            color: rgb(48, 48, 48);
+            font-size: 20px;
+            padding: 4px;
+            margin: 5px 20px;
+            text-decoration: none;
+            border-bottom: 4px solid transparent;
+            transition: .5s;
+        }
+
+        #active {
+            border-bottom: 4px solid rgb(185, 185, 185);
+        }
+
+        nav a:hover, #active:hover {
+            border-bottom: 4px solid rgb(48, 48, 48);
+        }
+
+        .table-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 60px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            font-size: 35px;
+        }
+
+        th, td{
+            padding: 0 25px;
+        }
+
+        td {
+            border-top: 1px solid rgb(48, 48, 48);
+            border-bottom: 1px solid rgb(48, 48, 48);
+            text-align: center;
+        }
+
+        tfoot td{
+            font-weight: 700;
+            border-color: transparent;
+        }
+
+        main {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        main a {
+            text-align: center;
+            color: rgb(48, 48, 48);
+            font-size: 40px;
+            border: 2px solid rgb(48, 48, 48);
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            text-decoration: none;
+            transition: .5s;
+            width: 300px;
+        }
+
+        main a:hover {
+            background-color: rgb(228, 228, 228);
+            color: rgb(48, 48, 48);
+            border-color: transparent;
+            box-shadow: 0 0 10px white;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <header>
+        <h1>Personal Finance Tracker <span id="beta">beta v0.1</span></h1>
+        <h3>(working title)</h3>
+    </header>
+
+    <nav>
+        <a href=/>home</a>
+        <a href=/expenses>expenses</a>
+        <a id="active" href=/debt>debt</a>
+        <a target="_blank" href=/admin>administration</a>
+    </nav>
+
+    <main>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Debt Name</th>
+                        <th>Balance</th>
+                        <th>Interest Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in debt_table %}
+                        <tr>
+                            <td>{{ i.debt_name }}</td>
+                            <td>${{ i.debt_balance }}</td>
+                            <td>{{ i.debt_interest_rate }}%</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Total: </td>
+                        <td>${{total_debt}}</td>
+                        <td> </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <a target="_blank" href="/admin/debt_app/debt_item/">Edit Debts</a>
+        </div>
+
+        <!--CHART-->
+        <div> 
+            {{ div|safe }}
+            {{ script|safe }}
+        </div>
+
+    </main>
+
+</body>
+</html>
