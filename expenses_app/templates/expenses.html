@@ -125,6 +125,87 @@
             box-shadow: 0 0 10px white;
         }
 
+        .chart-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bk-root {
+            margin-top: -200px;
+            margin-bottom: -150px;
+            min-height: 280px;
+            padding: 0;
+        }
+
+        @media only screen and (max-width: 900px) {
+
+            #beta {
+                display: none;
+            }
+
+            table {
+                font-size: 25px;
+            }
+
+            main a {
+                font-size: 25px;
+            }
+
+            .bk-root {
+            margin-top: -50px;
+            margin-bottom: -100px;
+            }
+
+        }
+
+
+        @media only screen and (max-width: 780px) {
+            header {
+                font-size: 2.5vw;
+            }
+
+            table {
+                font-size: 4vw;
+            }
+
+            main {
+                flex-direction: column-reverse;
+            }
+
+            main a {
+                font-size: 25px;
+            }
+
+            .chart-container {
+                margin: 0 auto;
+                padding: 0 auto;
+            }
+
+            .table-container, table{
+                width: 95vw;
+            }
+
+        }
+
+        @media only screen and (max-width: 450px) {
+
+            nav {
+                flex-direction: column;
+            }
+
+            .bk-root {
+                margin-left: -30px;
+            }
+
+            .bk {
+                padding-left: 0;
+                align-self: left;
+                justify-self: left;
+            }
+
+        }
+
     </style>
 
 </head>
@@ -174,7 +255,7 @@
         </div>
 
         <!--CHART-->
-        <div> 
+        <div class="chart-container"> 
             {{ div|safe }}
             {{ script|safe }}
         </div>
