@@ -136,6 +136,7 @@
             margin-bottom: -150px;
             min-height: 280px;
             padding: 0;
+            z-index: -1;
         }
 
         @media only screen and (max-width: 900px) {
@@ -255,11 +256,11 @@
         </div>
 
         <!--CHART-->
-        <div class="chart-container"> 
+        <div class="chart-container">
             {{ div|safe }}
             {{ script|safe }}
         </div>
-        
+
     </main>
 </body>
 </html>
