@@ -25,3 +25,7 @@ urlpatterns = [
     re_path('debt/',debt_view.debt, name='my debt'),
     re_path(r'^$', home_view.home, name='home'),
 ]
+
+admin.site.site_header = "Budget Admin Panel"
+admin.site.site_title = "Budget Admin Panel"
+admin.site.index_title = ""
